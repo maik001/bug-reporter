@@ -3,6 +3,7 @@ declare(strict_types = 1);
 
 namespace App\Helpers;
 
+use App\Exception\NotFoundException;
 use RuntimeException;
 use Throwable;
 
@@ -27,8 +28,9 @@ class Config
                 $fileContent = require($path);
             }
         } catch (Throwable $exception) {
-            throw new RuntimeException(
-                sprintf('The specified file: %s was not found', $filename)
+            throw new NotFoundException(
+                sprintf('The specified file: %s was not found', $filename), 
+                ['not found file', 'data is passed']
             );
         }
         return $fileContent;
