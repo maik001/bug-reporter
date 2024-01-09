@@ -1,8 +1,10 @@
 <?php
+declare(strict_types = 1);
+
 namespace App\Exception;
 
 use App\Helpers\App;
-use Throwable;
+use ErrorException, Throwable;
 
 class ExceptionHandler
 {
@@ -15,5 +17,10 @@ class ExceptionHandler
             echo "The app is running without debug mode, feature not available";
         }
         exit;
+    }
+
+    public function convertWarningAndNoticesToException($severity, $message, $file, $line)
+    {
+        throw new ErrorException($message, $severity, $severity, $file, $line);
     }
 }
