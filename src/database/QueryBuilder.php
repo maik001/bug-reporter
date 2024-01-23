@@ -3,10 +3,9 @@
 namespace App\Database;
 
 use App\Contracts\DatabaseConnectionInterface;
-use App\Exception\NotFoundException;
-use InvalidArgumentException;
+use App\Exception\InvalidArgumentException;
 
-class QueryBuilder
+abstract class QueryBuilder
 {
     protected $connection; // pdo or mysql
     protected $table;
@@ -15,7 +14,6 @@ class QueryBuilder
     protected $placeholders; // protect against sql injection
     protected $bindings; // name = ? ['terry']
     protected $operation = self::DML_TYPE_SELECT; // DML (select, insert, update, delete)
-    public $query;
 
     const OPERATORS = ['=', '>=', '>', '<=', '<', '<>'];
     const PLACEHOLDER = '?';
@@ -45,13 +43,13 @@ class QueryBuilder
                 $value = $operator;
                 $operator = self::OPERATORS[0];
             } else {
-                throw new NotFoundException('Operator is not valid', ['operator' => $operator]);
+                throw new InvalidArgumentException('Operator is not valid', ['operator' => $operator]);
             }
         }
 
         $this->parseWhere([$column => $value], $operator);
-        $this->query = $this->getQuery($this->operation);
-
+        $query = $this->prepare($this->getQuery($this->operation));
+        $this->statement = $this->execute($query);
         return $this;
     }
 
@@ -71,14 +69,45 @@ class QueryBuilder
         return $this;
     }
 
-    public function getBindings()
+    public function create(array $data)
     {
-        return $this->bindings;
+
     }
 
-    public function getPlaceholders()
+    public function update(array $data)
     {
-        return $this->placeholders;
+
     }
 
+    public function delete()
+    {
+
+    }
+
+    public function raw($query)
+    {
+
+    }
+
+    public function find($id)
+    {
+
+    }
+
+    public function findOneBy(string $field, $value)
+    {
+
+    }
+
+    public function first()
+    {
+
+    }
+
+    abstract public function get();
+    abstract public function count();
+    abstract public function lastInsertedId();
+    abstract public function prepare($query);
+    abstract public function execute($statement);
+    abstract public function fetchInto($className);
 }

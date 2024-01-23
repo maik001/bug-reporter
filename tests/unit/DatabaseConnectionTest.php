@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use App\Contracts\DatabaseConnectionInterface;
-use App\Database\MysqliConnection;
+use App\Database\MySQLiConnection;
 use App\Database\PDOConnection;
 use App\Exception\MissingArgumentException;
 use App\Helpers\Config;
@@ -34,16 +34,16 @@ class DatabaseConnectionTest extends TestCase
         self::assertInstanceOf(PDO::class, $handler->getConnection());
     }
 
-    public function testItCanConnectToDatabaseWithMysqliApi()
+    public function testItCanConnectToDatabaseWithMySQLiApi()
     {
         $credentials = $this->getCredentials('pdo');
-        $handler = (new MysqliConnection($credentials))->connect();
+        $handler = (new MySQLiConnection($credentials))->connect();
         self::assertInstanceOf(DatabaseConnectionInterface::class, $handler);
         return $handler;
     }
 
     /** @depends testItCanConnectToDatabaseWithMysqliApi */
-    public function testItIsAValidMysqliConnection(DatabaseConnectionInterface $handler)
+    public function testItIsAValidMySQLiConnection(DatabaseConnectionInterface $handler)
     {
         self::assertInstanceOf(mysqli::class, $handler->getConnection());
     }

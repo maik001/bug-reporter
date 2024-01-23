@@ -7,7 +7,7 @@ use App\Exception\DatabaseConnectionException;
 use mysqli, mysqli_driver;
 use Throwable;
 
-class MysqliConnection extends AbstractConnection implements DatabaseConnectionInterface
+class MySQLiConnection extends AbstractConnection implements DatabaseConnectionInterface
 {
 
     const REQUIRED_CONNECTION_KEYS = [
