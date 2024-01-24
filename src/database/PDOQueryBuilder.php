@@ -18,7 +18,7 @@ class PDOQueryBuilder extends QueryBuilder
 
     public function lastInsertedId()
     {
-        return $this->connection->lastInsertedId();
+        return $this->connection->lastInsertId();
     }
 
     public function prepare($query)

@@ -16,11 +16,14 @@ class MySQLiQueryBuilder extends QueryBuilder
 
     public function get() 
     {
+        $results = [];
         if(!$this->resultSet) {
             $this->resultSet = $this->statement->get_result();
-            $this->results = $this->resultSet->fetch_all(MYSQLI_ASSOC);
+            while($object = $this->resultSet->fetch_object()) {
+                $results[] = $object;
+            }
+            $this->results = $results;
         }
-
         return $this->results;
     }
 

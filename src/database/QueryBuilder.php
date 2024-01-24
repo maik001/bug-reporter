@@ -71,37 +71,60 @@ abstract class QueryBuilder
 
     public function create(array $data)
     {
+        $this->fields = '`' . implode('`, `', array_keys($data)). '`';
 
+        foreach ($data as $value) {
+            $this->placeholders[] = self::PLACEHOLDER;
+            $this->bindings[] = $value;
+        }
+
+        $query = $this->prepare($this->getQuery(self::DML_TYPE_INSERT));
+        $this->statement = $this->execute($query);
+
+        return $this->lastInsertedId();
     }
 
     public function update(array $data)
     {
-
+        $this->fields = [];
+        $this->operation = self::DML_TYPE_UPDATE;
+        foreach($data as $column => $value) {
+            $this->fields = sprintf('%s%s%S', $column, self::OPERATORS[0], "'$value'");
+        }
+        return $this;
     }
 
     public function delete()
     {
-
+        $this->operation = self::DML_TYPE_DELETE;
+        return $this;
     }
 
     public function raw($query)
     {
-
+        $query = $this->prepare($query);
+        $this->statement = $this->execute($query);
+        return $this;
     }
 
-    public function find($id)
+    public function findById($id)
     {
-
+        return $this->where('id', $id)->first(); 
     }
 
     public function findOneBy(string $field, $value)
     {
-
+        return $this->where($field, $value)->first();
     }
 
     public function first()
     {
+        return $this->count() ? $this->get()[0] : null;
+    }
 
+    public function getConnection()
+    {
+        return $this->connection;
     }
 
     abstract public function get();
