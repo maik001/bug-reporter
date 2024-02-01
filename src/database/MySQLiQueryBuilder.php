@@ -106,10 +106,23 @@ class MySQLiQueryBuilder extends QueryBuilder
     {
         $results = [];
         $this->resultSet = $this->statement->get_result();
-        while($object = $this->resultSet->fetch_object($className)) {
-            $results[] = $object;
+        if(!$this->resultSet) {
+            while($object = $this->resultSet->fetch_object($className)) {
+                $results[] = $object;
+            }
+            
+            return $this->results = $results;
         }
-        
-        return $this->results = $results;
+    }
+
+    public function beginTransaction()
+    {
+        $this->connection->begin_transaction();
+    }
+
+    public function affected()
+    {
+        $this->statement->store_result();
+        return $this->statement->affected_rows;
     }
 }
