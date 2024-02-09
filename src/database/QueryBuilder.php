@@ -36,7 +36,7 @@ abstract class QueryBuilder
         return $this;
     }
 
-    public function where(string $column, string $operator = self::OPERATORS[0], $value = null)
+    public function where(string $column, $operator = self::OPERATORS[0], $value = null)
     {
         if(!in_array($operator, self::OPERATORS)) {
             if ($value === null) {
@@ -79,7 +79,7 @@ abstract class QueryBuilder
         $query = $this->prepare($this->getQuery(self::DML_TYPE_INSERT));
         $this->statement = $this->execute($query);
 
-        return $this->lastInsertedId();
+        return (int) $this->lastInsertedId();
     }
 
     public function update(array $data)

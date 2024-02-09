@@ -30,10 +30,10 @@ class QueryBuilderTest extends TestCase
     public function insertData()
     {
         $data = ['report_type' => 'ReportType 1', 
-        'message' => 'Testing Create Records',
-        'link' => 'http://localhost',
-        'email' => 'maik@teste.com',
-        'created_at' => date('Y-m-d H:i:s')
+            'message' => 'Testing Create Records',
+            'link' => 'http://localhost',
+            'email' => 'maik@teste.com',
+            'created_at' => date('Y-m-d H:i:s')
         ];
 
         return $this->queryBuilder->table('reports')->create($data);

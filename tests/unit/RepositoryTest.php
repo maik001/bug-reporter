@@ -2,7 +2,9 @@
 
 namespace Tests\Unit;
 
+use App\Entities\BugReport;
 use App\Helpers\DbQueryBuilderFactory;
+use App\Repositories\BugReportRepository;
 use PHPUnit\Framework\TestCase;
 
 class RepositoryTest extends TestCase
@@ -10,7 +12,7 @@ class RepositoryTest extends TestCase
     /** @var QueryBuilder $queryBuilder */
     private $queryBuilder;
 
-
+    /** @var BugReportRepository $bugReportRepository */
     private $bugReportRepository;
 
     public function setUp(): void
@@ -21,7 +23,7 @@ class RepositoryTest extends TestCase
 
         $this->queryBuilder->beginTransaction();
 
-        $bugReportRepository = new BugReportRepository($this->queryBuilder);
+        $this->bugReportRepository = new BugReportRepository($this->queryBuilder);
         parent::setUp();
     }
     
@@ -30,7 +32,7 @@ class RepositoryTest extends TestCase
         $newBugReport = $this->createBugReport();
         self::assertInstanceOf(BugReport::class, $newBugReport);
         self::assertNotNull($newBugReport->getId());
-        self::assertSame('Type 2', $newBugReport->getType());
+        self::assertSame('Type 2', $newBugReport->getReportType());
         self::assertSame('http://localhost/', $newBugReport->getLink());
         self::assertSame('This is a dummy message', $newBugReport->getMessage());
         self::assertSame('email@example.com', $newBugReport->getEmail());
@@ -44,6 +46,7 @@ class RepositoryTest extends TestCase
                 ->setLink('http://newlocalhost/');
 
         $updateReport = $this->bugReportRepository->update($bugReport);
+        self::assertInstanceOf(BugReport::class, $updateReport);
         self::assertSame('http://newlocalhost/', $updateReport->getLink());
         self::assertSame('This is an update', $updateReport->getMessage());
     }
@@ -57,6 +60,21 @@ class RepositoryTest extends TestCase
         self::assertNull($bugReport);
     }
 
+    public function testItCanFindByCriteria()
+    {
+        $newBugReport = $this->createBugReport();
+        $report = $this->bugReportRepository->findBy([
+            ['report_type', '=', 'Type 2'],
+            ['email', '=', 'email@example.com']
+            ]);
+        self::assertIsArray($report);
+        
+        /** @var BugReport $bugReport */
+        $bugReport = $report[0];
+        self::assertSame('Type 2', $bugReport->getReportType());
+        self::assertSame('email@example.com', $bugReport->getEmail());
+    }
+
     private function createBugReport(): BugReport
     {
         $bugReport = new BugReport();
@@ -64,6 +82,7 @@ class RepositoryTest extends TestCase
                 ->setLink('http://localhost/')
                 ->setMessage('This is a dummy message')
                 ->setEmail('email@example.com');
+        return $this->bugReportRepository->create($bugReport);
     }
     public function tearDown(): void
     {

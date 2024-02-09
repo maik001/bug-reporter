@@ -1,6 +1,6 @@
 <?php
 
-namespace Teste\Unit;
+namespace Tests\Unit;
 
 use App\Helpers\App;
 use DateTime;

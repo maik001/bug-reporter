@@ -13,7 +13,7 @@ class BugReport extends Entity
 
     public function getId(): int
     {
-        return $this->id;
+        return (int) $this->id;
     }
 
     public function setReportType(string $reportType)
