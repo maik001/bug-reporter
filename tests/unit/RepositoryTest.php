@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Database\QueryBuilder;
 use App\Entities\BugReport;
 use App\Helpers\DbQueryBuilderFactory;
 use App\Repositories\BugReportRepository;

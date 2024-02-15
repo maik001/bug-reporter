@@ -36,4 +36,15 @@ class DbQueryBuilderFactory
                     );
         }
     }
+
+    public static function get(): QueryBuilder
+    {
+        $app = new App;
+
+        if($app->isTestMode()) {
+            return self::make('database', 'pdo', ['db_name' => 'bug_reporter_testing']);
+        }
+
+        return self::make();
+    }
 }
