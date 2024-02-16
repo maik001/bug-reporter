@@ -1,0 +1,27 @@
+2024-02-13 21:28:22 - Level: emergency - Message: there is a emergency situation - Context: {"exception":"exception occured"}
+2024-02-13 21:28:22 - Level: info - Message: User account created successfully - Context: {"id":5}
+2024-02-13 21:35:06 - Level: critical - Message: SQLSTATE[HY000] [1049] Unknown database 'bug_reporter' - Context: [{"report_type":"Video Issue","message":"The video xxxxxx has issues, please report them","email":"email@example.com","link":"http:\/\/localhost\/","add":"1"}]
+2024-02-13 21:52:32 - Level: critical - Message: SQLSTATE[HY000] [1049] Unknown database 'bug_reporter' - Context: [{"report_type":"Video Issue","message":"The video xxxxxx has issues, please report them","email":"email@example.com","link":"http:\/\/localhost\/","add":"1"}]
+2024-02-13 21:55:17 - Level: critical - Message: SQLSTATE[HY000] [1049] Unknown database 'bug_reporter' - Context: [{"report_type":"Video Issue","message":"The video xxxxxx has issues, please report them","email":"email@example.com","link":"http:\/\/localhost\/","add":"1"}]
+2024-02-13 21:55:36 - Level: critical - Message: SQLSTATE[HY000] [1049] Unknown database 'bug_reporter' - Context: [{"report_type":"Video Issue","message":"The video xxxxxx has issues, please report them","email":"email@example.com","link":"http:\/\/localhost\/","add":"1"}]
+2024-02-13 21:56:28 - Level: critical - Message: SQLSTATE[HY000] [1049] Unknown database 'bug_reporter' - Context: [{"report_type":"Video Issue","message":"The video xxxxxx has issues, please report them","email":"email@example.com","link":"http:\/\/localhost\/","add":"1"}]
+2024-02-13 21:59:56 - Level: critical - Message: SQLSTATE[HY000] [1049] Unknown database 'bug_reporter' - Context: [{"report_type":"Video Issue","message":"The video xxxxxx has issues, please report them","email":"email@example.com","link":"http:\/\/localhost\/","add":"1"}]
+2024-02-13 22:00:23 - Level: critical - Message: SQLSTATE[HY000] [1049] Unknown database 'bug_reporter' - Context: [{"report_type":"Video Issue","message":"The video xxxxxx has issues, please report them","email":"email@example.com","link":"http:\/\/localhost\/","add":"1"}]
+2024-02-13 22:00:33 - Level: critical - Message: SQLSTATE[HY000] [1049] Unknown database 'bug_reporter' - Context: [{"report_type":"Video Issue","message":"The video xxxxxx has issues, please report them","email":"email@example.com","link":"http:\/\/localhost\/","add":"1"}]
+2024-02-13 22:00:50 - Level: critical - Message: SQLSTATE[HY000] [1049] Unknown database 'bug_reporter' - Context: [{"report_type":"Video Issue","message":"The video xxxxxx has issues, please report them","email":"email@example.com","link":"http:\/\/localhost\/","add":"1"}]
+2024-02-13 22:05:54 - Level: critical - Message: SQLSTATE[HY000] [1049] Unknown database 'bug_reporter' - Context: [{"report_type":"Video Issue","message":"The video xxxxxx has issues, please report them","email":"email@example.com","link":"http:\/\/localhost\/","add":"1"}]
+2024-02-13 22:09:05 - Level: info - Message: new bug report created - Context: {"id":58,"type":"Video Issue"}
+2024-02-13 22:09:27 - Level: info - Message: new bug report created - Context: {"id":59,"type":"Video Issue"}
+2024-02-14 18:36:38 - Level: critical - Message: SQLSTATE[HY000]: General error: 2006 MySQL server has gone away - Context: [{"report_type":"Video Issue","message":"The video xxxxxx has issues, please report them","email":"email@example.com","link":"http:\/\/localhost\/","add":"1"}]
+2024-02-14 18:37:03 - Level: info - Message: new bug report created - Context: {"id":60,"type":"Video Issue"}
+2024-02-14 18:37:24 - Level: info - Message: new bug report created - Context: {"id":61,"type":"Video Issue"}
+2024-02-14 19:00:15 - Level: info - Message: new bug report created - Context: {"id":62,"type":"Video Issue"}
+2024-02-14 19:00:34 - Level: info - Message: new bug report created - Context: {"id":63,"type":"Video Issue"}
+2024-02-14 19:00:35 - Level: info - Message: bug report updated - Context: {"id":58,"type":"Video Issue"}
+2024-02-14 19:03:31 - Level: info - Message: new bug report created - Context: {"id":64,"type":"Video Issue"}
+2024-02-14 19:05:12 - Level: info - Message: new bug report created - Context: {"id":65,"type":"Video Issue"}
+2024-02-14 19:05:26 - Level: info - Message: bug report updated - Context: {"id":59,"type":"Video Issue"}
+2024-02-14 19:06:45 - Level: info - Message: new bug report created - Context: {"id":66,"type":"Video Issue"}
+2024-02-14 19:06:48 - Level: info - Message: bug report updated - Context: {"id":60,"type":"Video Issue"}
+2024-02-14 19:09:05 - Level: info - Message: new bug report created - Context: {"id":67,"type":"Video Issue"}
+2024-02-14 19:09:06 - Level: info - Message: bug report updated - Context: {"id":61,"type":"Video Issue"}
